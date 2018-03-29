@@ -1,0 +1,33 @@
+/* Your custom styles */
+html{
+  height: 100%;
+}
+
+.main_section{
+  position: relative;
+  padding-top: 10%;
+  background-size: cover;
+  margin-left: 35%;
+  margin-right: 35%;
+
+}
+
+.body1{
+  background: url(../img/custom_images/img3.jpg);
+  background-size: cover;
+  background-position:  center;
+}
+
+.card-body1{
+  margin-top: 60px;
+  padding-bottom: 20px;
+  height: 50%;
+  width: 50%;
+
+}
+
+/*  */
+
+
+
+/*  */

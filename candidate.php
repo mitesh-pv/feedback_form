@@ -16,9 +16,9 @@ databaseConnection();
 // get the selected candidate details
 $candidateArray=candidateConnection($canName);
 
-
-
 ?>
+
+
 
 
 

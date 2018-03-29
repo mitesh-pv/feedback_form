@@ -1,10 +1,12 @@
 <?php
+  session_start();
+
   // database connection
   include './local_resources/connections/database.php';
   // including the header
   require_once './local_resources/components/header.php';
 
-  databaseConnection();
+  $connection=databaseConnection();
 ?>
 
 
@@ -40,10 +42,6 @@ if(isset($_POST['submit'])){
 
   $username=$_POST['username'];
   $password=$_POST['password'];
-
-  //escape the string escape sequence
-  $username=mysqli_real_escape_string($connection,$username);
-  $password=mysqli_real_escape_string($connection,$password);
 
   // call the user table
   userConnection($username,$password);

@@ -2,16 +2,14 @@
 
 <?php
 
-  function userConnection($username, $password){
-      $connection=mysqli_connect('localhost','root','','decoders');
+function databaseConnection(){
+    $connection=mysqli_connect('localhost','root','','decoders');
+        if (!$connection) {
+          die("Connection failed: " . mysqli_connect_error());
+        }
+  }
 
-      if (!$connection) {
-        die("Connection failed: " . mysqli_connect_error());
-      }
-
-      //escape the string escape sequence
-      $username=mysqli_real_escape_string($connection,$username);
-      $password=mysqli_real_escape_string($connection,$password);
+function userConnection($username, $password){
 
       $hashFormat="$2y$10$";
       $salt="KLMNOPCBARQPZYXPOIUYRT";
@@ -30,5 +28,37 @@
       }else{
             echo 'password not correct';
       }
+
+    }
+
+function candidateConnection($canName){
+    $query="select * from candidate where   name='$canName'";
+    $select_row=mysqli_query($connection,$query);
+
+    // pull all the data from database
+    while($row=mysqli_fetch_assoc($select_row)){
+        $canUsn=$row['usn'];
+        $canEmail=$row['email'];
+        $canPhone=$row['phone'];
+        $canYear=$row['year'];
+        $canBranch=$row['branch'];
+        $canCGPA=$row['cgpa'];
+        $canImage=$row['image'];
+        $canResume=$row['resume'];
+    }
+
+    // push the data into the candidate array and return the array
+    $candidateArray= array(
+      'usn'=$row['usn'];
+      'email'=$row['email'];
+      'phone'=$row['phone'];
+      'year'=$row['year'];
+      'branch'=$row['branch'];
+      'cgpa'=$row['cgpa'];
+      'image'=$row['image'];
+      'resume'=$row['resume'];
+    );
+
+    return $candidateArray;
 }
 ?>

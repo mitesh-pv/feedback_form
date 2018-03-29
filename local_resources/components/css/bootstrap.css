@@ -4723,12 +4723,14 @@ tbody.collapse.show {
       flex-direction: column;
   padding-left: 0;
   margin-bottom: 0;
+  text-transform: uppercase;
 }
 
 .list-group-item-action {
   width: 100%;
   color: #495057;
   text-align: inherit;
+  text-transform: uppercase;
 }
 
 .list-group-item-action:focus, .list-group-item-action:hover {
@@ -4749,6 +4751,7 @@ tbody.collapse.show {
   margin-bottom: -1px;
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.125);
+  text-transform: uppercase;
 }
 
 .list-group-item:first-child {

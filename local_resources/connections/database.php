@@ -73,5 +73,7 @@ function candidateConnection($canName){
     );
 
     return $candidateArray;
+
+
 }
 ?>

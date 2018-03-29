@@ -16,4 +16,5 @@
     <link href="./local_resources/components/css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
     <link href="./local_resources/components/css/style.css" rel="stylesheet">
+    <link href="./local_resources/components/css/custom.css" rel="stylesheet">
 </head>

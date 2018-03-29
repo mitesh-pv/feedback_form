@@ -1,0 +1,8 @@
+.mera:hover{
+    -webkit-transition: all 0.5s ease-in-out;
+    -webkit-transform: scale(1.1);
+    background: #337AFF;
+    font-weight: 900;
+    text-transform: uppercase;
+
+}

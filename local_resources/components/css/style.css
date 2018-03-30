@@ -3,6 +3,7 @@ html{
   height: 100%;
 }
 
+/* main section of login page */
 .main_section{
   position: relative;
   padding-top: 10%;
@@ -11,12 +12,14 @@ html{
   margin-right: 35%;
 }
 
+/* style for login page background */
 .body1{
   background: url(../img/custom_images/img3.jpg);
   background-size: cover;
   background-position:  center;
 }
 
+/* style for login card */
 .card-body1{
   margin-top: 60px;
   padding-bottom: 20px;
@@ -25,8 +28,9 @@ html{
 
 }
 
-/*  */
+/* style for navbar */
+.navbar{
+  background-color: #212121;
+  opacity:0.95;
 
-
-
-/*  */
+}

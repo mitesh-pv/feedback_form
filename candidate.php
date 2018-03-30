@@ -1,13 +1,17 @@
 <?php
 // database connection
 include './local_resources/connections/database.php';
+
 // including the header
 require_once './local_resources/components/header.php';
 
-//starting session
+// include navbar
+require_once './local_resources/components/navbar.php';
+
+// starting session
 session_start();
 
-//get the candidate name
+// get the candidate name
 $canName=$_GET["candidateName"];
 
 // connect database
@@ -15,27 +19,7 @@ databaseConnection();
 
 // get the selected candidate details
 $candidateArray=candidateConnection($canName);
-
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -3,9 +3,14 @@
   include './local_resources/connections/database.php';
   // including the header
   require_once './local_resources/components/header.php';
+  
+
+
 ?>
-<body>  
-       
+<body>
+<?php  
+  require_once './local_resources/components/navbar.php';
+  ?>     
     
     <br>
     <br>
@@ -21,7 +26,7 @@
            
             if($connection=mysqli_connect('localhost','root','','decoders')){
                                         
-                    $query="select * from candidate";
+                    $query="select * from candidate where year=1";
                     $result=mysqli_query($connection,$query);
                     $rowcount=mysqli_num_rows($result);
                     
@@ -29,7 +34,7 @@
                     if (mysqli_num_rows($result) > 0) {
                         // output data of each row
                         while($row = mysqli_fetch_assoc($result)) {
-                          if($row["year"]=="1")
+                          //if($row["year"]=="1")
                             $canName=$row["name"];        
       ?>
 
@@ -63,7 +68,7 @@
            
             if($connection=mysqli_connect('localhost','root','','decoders')){
                                         
-                    $query="select * from candidate";
+                    $query="select * from candidate where year=2";
                     $result=mysqli_query($connection,$query);
                     $rowcount=mysqli_num_rows($result);
                     
@@ -71,7 +76,7 @@
                     if (mysqli_num_rows($result) > 0) {
                         // output data of each row
                         while($row = mysqli_fetch_assoc($result)) {
-                          if($row["year"]=="2")
+                          //if($row["year"]=="2")
                             $canName=$row["name"];        
       ?>
 

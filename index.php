@@ -36,17 +36,16 @@
                       <button class="btn btn-primary  btn-block" type="submit" name="submit">Login</button>
                   </div>
                   <a href="#!" class="badge badge-primary">admin</a>
-<?php
 
-if(isset($_POST['submit'])){
+                  <?php
+                  if(isset($_POST['submit'])){
+                    $username=$_POST['username'];
+                    $password=$_POST['password'];
+                    // call the user table
+                    userConnection($username,$password);
+                  }
+                  ?>
 
-  $username=$_POST['username'];
-  $password=$_POST['password'];
-
-  // call the user table
-  userConnection($username,$password);
-}
-?>
               </form>
               <!-- Default form subscription -->
           </div>

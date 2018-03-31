@@ -34,3 +34,60 @@ html{
   opacity:0.95;
 
 }
+
+/* candidate profile section */
+.profile{
+  padding-top: 10%;
+}
+
+/* jumbotron */
+.jumbotron{
+  background-color: rgb(244, 243, 243);
+  margin-right: ;
+  /* height: 100%; */
+}
+
+/* candidate record card  */
+.card1{
+  width: 100% ;
+  height: 100%;
+  /* padding-left: 10%;
+  padding-right: 12%;
+   */
+  margin-right: 10%;
+  /* margin: auto; */
+}
+
+/* candidate profile  card  */
+.can_card{
+  padding-left:4%;
+}
+
+/* candidate table record  */
+table {
+  margin-top: 50px;
+}
+
+/* candidate table record table data  */
+td{
+  padding: 30px 30px 30px 30px;
+
+}
+
+/* improving the text area */
+.shadow-textarea textarea.form-control::placeholder {
+  font-weight: 300;
+}
+.shadow-textarea textarea.form-control {
+  padding-left: 0.8rem;
+}
+
+/* candidate selector */
+.select_candidate:hover{
+    -webkit-transition: all 0.5s ease-in-out;
+    -webkit-transform: scale(1.1);
+    background: #337AFF;
+    font-weight: 900;
+    text-transform: uppercase;
+
+}

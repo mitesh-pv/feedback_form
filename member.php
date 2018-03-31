@@ -40,7 +40,7 @@
                             $canName=$row["name"];
       ?>
 
-      <a href="candidate.php?candidateName=<?php echo $canName;?>" class="list-group-item mera list-group-item-action "><?php echo  $canName;?></a>
+      <a href="candidate.php?candidateName=<?php echo $canName;?>" class="list-group-item select_candidate list-group-item-action "><?php echo  $canName;?></a>
         <?php
                         }
 
@@ -139,30 +139,12 @@
    <div class="col-4"></div>
    </div>
  </div>
-     <p>sdfjgndfg</p>
-     <p>sdfjgndfg</p>
-     <p>sdfjgndfg</p>
-     <p>sdfjgndfg</p>
-     <p>sdfjgndfg</p>
-     <p>sdfjgndfg</p>
-     <p>sdfjgndfg</p>
-     <p>sdfjgndfg</p>
-     <p>sdfjgndfg</p>
-     <p>sdfjgndfg</p>
-     <p>sdfjgndfg</p>
-     <p>sdfjgndfg</p>
-     <p>sdfjgndfg</p>
-     <p>sdfjgndfg</p>
-     <p>sdfjgndfg</p>
-     <p>sdfjgndfg</p>
-     <p>sdfjgndfg</p>
-     <p>sdfjgndfg</p>
-     <p>sdfjgndfg</p>
-     <p>sdfjgndfg</p>
-     <p>sdfjgndfg</p>
-     <p>sdfjgndfg</p>
-     <p>sdfjgndfg</p>
-     <p>sdfjgndfg</p>
+
+
+
+
+
+
 
 </body>
 <?php require_once './local_resources/components/footer.php';?>

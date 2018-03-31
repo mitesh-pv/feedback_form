@@ -94,7 +94,7 @@ $candidateArray=candidateConnection($canName);
 
 <div class="row">
   <div class=" row form-group shadow-textarea col-sm-8">
-      <label for="comment" class="text-muted">Comments</label>
+      <label for="comment" class="text-muted">Remark</label>
       <textarea class="form-control z-depth-1" id="comment" rows="3" placeholder="Write something here..." style="height: 100%;" aria-expanded=false></textarea>
   </div>
 </div>
@@ -105,8 +105,11 @@ $candidateArray=candidateConnection($canName);
     <?php ?>
 </select>
 
-<hr class="row">
-<input type="submit" name="submit" class="btn btn-primary mb-r" value="Submit">
+<br><hr class="row" style="width: 69%;">
+
+<div class="row">
+  <input type="submit" name="submit" class="btn btn-primary mb-r" value="Submit">
+</div>
 
 </section>
 

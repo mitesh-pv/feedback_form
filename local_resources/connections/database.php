@@ -33,7 +33,6 @@ function userConnection($username, $password){
       $rowcount=mysqli_num_rows($result);
 
       if($rowcount){
-
             $_SESSION["username"]=$username;
             header('location: member.php');
       }else{

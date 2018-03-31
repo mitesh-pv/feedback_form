@@ -8,13 +8,13 @@
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown dropdown1">
-                         <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><!-- <?php echo ucfirst($_SESSION["username"])?></a>  -->
+                         <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <?php echo ucfirst($_SESSION["username"])?></a>
                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                               <a class="dropdown-item" href="logout.php">logout</a>
                               <a class="dropdown-item disable" href="#">More</a>
-                         </div>                                       
+                         </div>
                     </li>
-                </ul> 
+                </ul>
             </div>
     </div>
 </nav>

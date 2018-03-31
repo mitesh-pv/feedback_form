@@ -1,20 +1,37 @@
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark ">
-        <div class="container ">
-            <a class="navbar-brand" href="#">DeCoders</a>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item"><a class="nav-link active" href="#">About</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav">
-                    <li class="nav-item dropdown dropdown1">
-                         <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <?php echo ucfirst($_SESSION["username"])?></a>
-                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <a class="dropdown-item" href="logout.php">logout</a>
-                              <a class="dropdown-item disable" href="#">More</a>
-                         </div>
-                    </li>
-                </ul>
-            </div>
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+  <div class="container">
+
+    <!-- Navbar brand -->
+    <a class="navbar-brand" href="#">DeCoders</a>
+
+    <!-- Collapse button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="basicExampleNav">
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+            </li>
+        </ul>
+        <!-- Links -->
+        <ul class="navbar-nav ml-auto pull-right">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+          <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="#">Logout</a>
+              <a class="dropdown-item" href="#">More</a>
+          </div>
+        </li>
+      </ul>
     </div>
+    <!-- Collapsible content -->
+</div>
 </nav>
+<!--/.Navbar-->
+

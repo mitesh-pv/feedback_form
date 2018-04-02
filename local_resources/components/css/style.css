@@ -8,7 +8,7 @@ html{
   position: relative;
   padding-top: 10%;
   background-size: cover;
-  margin-left: 35%;
+  margin-left: 34.8%;
   margin-right: 35%;
 }
 
@@ -89,5 +89,9 @@ td{
     background: #337AFF;
     font-weight: 900;
     text-transform: uppercase;
+}
 
+.dropdown-menu:hover{
+  display: block;
+    cursor :pointer;
 }

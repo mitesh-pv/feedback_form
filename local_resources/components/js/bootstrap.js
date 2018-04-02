@@ -3,6 +3,15 @@
   * Copyright 2011-2017 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
   */
+
+
+
+ // Material Select Initialization
+ $(document).ready(function() {
+    $('.mdb-select').material_select();
+  });
+
+
 var bootstrap = (function (exports,$,Popper) {
 'use strict';
 

@@ -4,12 +4,19 @@
   // database connection
   include './local_resources/connections/database.php';
   // including the header
-  require_once './local_resources/components/header.php';
+  require_once './local_resources/components/head.php';
+
+  if($_SESSION["username"]==true){
+    $user=$_SESSION["username"];
+  }else{
+    header('location: index.php');
+  }
+
+
+
 ?>
 <body>
-<?php
-  require_once './local_resources/components/navbar.php';
-  ?>
+<?php require_once './local_resources/components/navbar.php'; ?>
 
     <br>
     <br>

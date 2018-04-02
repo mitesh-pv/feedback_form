@@ -6,7 +6,7 @@ session_start();
 include './local_resources/connections/database.php';
 
 // including the header
-require_once './local_resources/components/header.php';
+require_once './local_resources/components/head.php';
 
 // include navbar
 require_once './local_resources/components/navbar.php';
@@ -19,6 +19,7 @@ databaseConnection();
 
 // get the selected candidate details
 $candidateArray=candidateConnection($canName);
+
 ?>
 
 
@@ -26,26 +27,26 @@ $candidateArray=candidateConnection($canName);
   <div class="row">
   <div class="jumbotron col-sm-8 ">
     <div class="card-title">
-      <h3 class="text-center text-muted">Candidate profile</h3>
+      <h3 class="text-center font-weight-bold"><?php echo $canName;?></h3>
       <hr>
     </div>
     <div class="card-text">
         <table>
             <tr>
               <td><h4  class="font-weight-bold text-muted">USN :</h4></td>
-              <td><h4 ><?php echo $candidateArray['usn'];?>1SI15CS059</h4></td>
+              <td><h4 ><?php echo $candidateArray['usn'];?></h4></td>
             </tr>
             <tr>
               <td><h4  class="font-weight-bold text-muted">Year :</h4></td>
-              <td><h4 ><?php echo $candidateArray['usn'];?>2nd Year</h4></td>
+              <td><h4 ><?php echo $candidateArray["year"];?></h4></td>
             </tr>
             <tr>
               <td><h4  class="font-weight-bold text-muted">Branch :</h4></td>
-              <td><h4 ><?php echo $candidateArray['usn'];?>CSE</h4></td>
+              <td><h4 ><?php echo $candidateArray["branch"];?></h4></td>
             </tr>
             <tr>
               <td><h4  class="font-weight-bold text-muted">CGPA :</h4></td>
-              <td><h4 ><?php echo $candidateArray['usn'];?>9.40</h4></td>
+              <td><h4 ><?php echo $candidateArray["cgpa"];?></h4></td>
             </tr>
         </table>
     </div>
@@ -57,7 +58,7 @@ $candidateArray=candidateConnection($canName);
       <div class="card card-cascade narrower mb-r text-center" style="margin-top: 28px">
           <!--Card image-->
           <div class="view card-body card1">
-              <img src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(147).jpg" class="img-fluid" alt="">
+              <img src="" class="img-fluid" alt="">
               <a>
                   <div class="mask rgba-white-slight waves-effect waves-light"></div>
               </a>
@@ -68,7 +69,7 @@ $candidateArray=candidateConnection($canName);
           <div class="card-body">
               <!--Title-->
               <h4 class="card-title text-muted"><?php echo $canName;?></h4>
-              <h5 class="text-primary "><span class="text-muted">&#9993;</span><?php echo $candidateArray['email'];?> mitesh.vishwakarma@gmail.com</h5>
+              <h5 class="text-primary "><span class="text-muted">&#9993;</span><?php echo $candidateArray['email'];?></h5>
               <!--Text-->
               <p class="card-text"></p>
               <a class="btn btn-primary waves-effect waves-light">Download Resume</a>
@@ -83,11 +84,14 @@ $candidateArray=candidateConnection($canName);
 <hr class="row" style="width: 69%;">
 <!-- <label class="" >lReview: </label> -->
 <div class="selector">
-  <select class="row mdb-select colorful-select dropdown-primary">
-    <option value="1" id="sel">selected</option>
-    <option value="2" id="rec">recommend</option>
-    <option value="3" id="rej">reject</option>
+  <select class="mdb-select">
+      <option value="" disabled selected>Choose your option</option>
+      <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
   </select>
+  <label>Example label</label>
+
 </div>
 <hr class="row" style="width: 69%;">
 <!--/Blue select-->
@@ -102,7 +106,7 @@ $candidateArray=candidateConnection($canName);
 
 <select class="mdb-select row">
     <option value="" disabled selected>second viewer</option>
-    <?php ?>
+    <?php echo "<option value='$'>Option 1</option>";?>
 </select>
 
 <br><hr class="row" style="width: 69%;">
@@ -121,7 +125,6 @@ $candidateArray=candidateConnection($canName);
 $(document).ready(function() {
    $('.mdb-select').material_select();
 });
-
 </script>
 
 <?php require_once './local_resources/components/footer.php';?>

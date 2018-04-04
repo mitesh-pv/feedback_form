@@ -169,7 +169,8 @@ if(isset($_GET["submit"])){
         <!-- </div> -->
       <hr>
       <!--submit button  -->
-        <input type="submit" name="submit" class="btn btn-primary mb-l" value="Submit">
+        <div class="d-flex justify-content-center"><input type="submit" name="submit" class="btn  btn-primary mb-lg-auto" value="Submit"></div>
+
   </div>
 
   <!-- test scores  -->

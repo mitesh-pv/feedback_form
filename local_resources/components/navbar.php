@@ -20,9 +20,10 @@
             </li>
         </ul>
         <!-- Links -->
+        <?php $user=$_SESSION['username'] ?>
         <ul class="navbar-nav ml-auto pull-right">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo ucfirst($_SESSION['username']);?></a>
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo ucfirst($user);?></a>
           <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" href="logout.php">Logout</a>
               <a class="dropdown-item" href="#">More</a>

@@ -6,11 +6,15 @@
   // including the header
   require_once './local_resources/components/head.php';
 
+  $connection=databaseConnection();
+
   if($_SESSION["username"]==true){
     $user=$_SESSION["username"];
   }else{
     header('location: index.php');
   }
+
+
 
 
 
@@ -88,6 +92,7 @@
 
       <a href="candidate.php?candidateName=<?php echo $canName;?>" class="list-group-item select_candidate list-group-item-action "><?php echo  $canName;?></a>
         <?php
+
                         }
 
                   /*  while($fieldinfo=mysqli_fetch_field($result))
@@ -102,6 +107,8 @@
 
               }
 
+
+
     ?>
 
 
@@ -111,13 +118,20 @@
   <div class="col-1">
   </div>
   <div class="col-3">
-  <div class="card" style="width: 18rem;">
+  <div class="card" style="width: 30rem;">
   <div class="card-header">
-   <h5>Recomendations</h5>
+   <h5 class="text-center">Recomendations</h5>
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">Lokesh</li>
-    <li class="list-group-item">Mitesh</li>
+
+    <?php
+          $query="select * from feedback where recommend_to='$user'";
+          $select_rows=mysqli_query($connection,$query);
+
+          while($row=mysqli_fetch_assoc($select_rows)){
+  echo "<li class='list-group-item pull-left'><a href='candidate.php?candidateName=".ucfirst($row["candidate_name"])."'>".$row['candidate_name']."</a><small class='pull-right'>from&nbsp&nbsp".$row['reviewer1']."</li>";
+          }
+    ?>
   </ul>
 </div>
 </div>

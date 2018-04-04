@@ -95,3 +95,18 @@ td{
   display: block;
     cursor :pointer;
 }
+
+.select-picker{
+  border-radius: 5px;
+  height: 40px;
+  width: 200px;
+
+}
+
+.recommend:hover{
+  -webkit-transition: all 0.5s ease-in-out;
+  -webkit-transform: scale(1.1);
+  background: blue;
+  font-weight: 900;
+  
+}

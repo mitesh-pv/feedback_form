@@ -36,7 +36,7 @@
       else
         echo 'enter username and password';
     }else{
-          toastr.success('Hi! I am success message.');
+        //  toastr.success('Hi! I am success message.');
     }
   }
 ?>
@@ -86,7 +86,7 @@
 $("#alert-target").click(function () {
     toastr["info"]("I was launched via jQuery!")
 });
- 
+
 </script>
 
 

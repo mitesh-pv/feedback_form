@@ -41,7 +41,7 @@ html{
 }
 
 /* jumbotron */
-.jumbotron{
+.jumbotron1{
   background-color: rgb(244, 243, 243);
   margin-right: ;
   /* height: 100%; */
@@ -108,5 +108,15 @@ td{
   -webkit-transform: scale(1.1);
   background: blue;
   font-weight: 900;
-  
+
+}
+
+/* styling for score card */
+.score_card{
+  margin-left: 5%;
+}
+
+.comment_card{
+  margin-left: 12%;
+  width: 20rem;
 }

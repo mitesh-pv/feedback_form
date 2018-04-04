@@ -6,7 +6,7 @@ session_start();
 include './local_resources/connections/database.php';
 
 // including the header
-require_once './local_resources/components/head.php';
+require_once './local_resources/components/header.php';
 
 // include navbar
 require_once './local_resources/components/navbar.php';
@@ -57,7 +57,7 @@ if(isset($_GET["submit"])){
 <form  action="candidate.php" method="get">
 
         <div class="row">
-        <div class="jumbotron col-sm-8 ">
+        <div class="jumbotron jumbotron1 col-sm-8 ">
           <div class="card-title">
             <h3 class="text-center font-weight-bold"><?php echo $canName;?></h3>
             <hr>
@@ -97,7 +97,7 @@ if(isset($_GET["submit"])){
                     </a>
                 </div>
                 <!--/.Card image-->
-                <hr>
+
                 <!--Card content-->
                 <div class="card-body">
                     <!--Title-->
@@ -113,47 +113,100 @@ if(isset($_GET["submit"])){
         </div>
       </div>
 
-      <!--Blue select-->
-      <hr class="row" style="width: 69%;">
-      <!-- <label class="" >lReview: </label> -->
-      <div class="selector" id="selector">
-        <select class="row mdb-select select-picker" name="action" required>
-            <option value="" disabled selected>Action</option>
-            <option value="select">Select</option>
-            <option value="recommend" id="recommend">Recomend</option>
-            <option value="reject">Reject</option>
-        </select>
+      <div class="row">
+    <div class="col-sm-8 jumbotron">
 
+          <!--Blue select-->
 
-      </div>
-      <hr class="row" style="width: 69%;">
+          <label class="card-title text-muted" >Review: </label>
+           <div class="selector" id="selector">
+            <select class="mdb-select select-picker" id="s"name="action" required>
+                <option value="" disabled selected>Action</option>
+                <option value="select">Select</option>
+                <option value="recommend" id="recommend">Recomend</option>
+                <option value="reject">Reject</option>
+            </select>
+          </div>
+
+          <br><br>
+
+        <!-- </div> -->
+
+        <!-- next to delete  -->
+      <!-- <hr class="row"> -->
       <!--/Blue select-->
       <input type="hidden" name="candidateName" value="<?php echo $canName;?>">
 
-      <div class="row">
-        <div class=" row form-group shadow-textarea col-sm-8">
-            <label for="comment" class="text-muted">Remark</label>
-            <textarea class="form-control z-depth-1" id="comment" rows="3" placeholder="Write something here..." name="comment" style="height: 100%;" aria-expanded=false></textarea>
-        </div>
-      </div>
-      <br><hr class="row" style="width: 69%;">
+        <!-- <div class="col-sm-8"> -->
+                <!-- text area for comments -->
 
-      <select class="mdb-select row select-picker" name="sec_reviewer" required>
-          <option value="" disabled selected>second reviewer</option>
-          <?php //$select_rows= getUsers($user);
-                $query="select * from users where username !='$user'";
-                $select_rows=mysqli_query($connection,$query);
-                while($row=mysqli_fetch_assoc($select_rows)){
-                  echo "<option value=".$row['username'].">".$row['username']."</option>";
-                }
-          ?>
-      </select>
+                <div class="form-group">
+                  <label for="comments">Remarks</label>
+                  <textarea class="form-control" id="comment" rows="3" placeholder="   Write something here..." name="comment" style="padding-Left:2px;    height: 100%; width:;" aria-expanded=false></textarea>
+                </div>
 
-      <br><hr class="row" style="width: 69%;">
 
-      <div class="row">
-        <input type="submit" name="submit" class="btn btn-primary mb-r" value="Submit">
-      </div>
+                <!-- text area for comments -->
+                <br><br>
+                <!-- <hr class="row"> -->
+
+                <!-- option for second interviewer -->
+                <select class="mdb-select select-picker" name="sec_reviewer" required>
+                    <option value="" disabled selected>second reviewer</option>
+                    <?php //$select_rows= getUsers($user);
+                          $query="select * from users where username !='$user'";
+                          $select_rows=mysqli_query($connection,$query);
+                          while($row=mysqli_fetch_assoc($select_rows)){
+                            echo "<option value=".$row['username'].">".$row['username']."</option>";
+                          }
+                    ?>
+                </select>
+                <br><br>
+                <!-- <hr class="row"> -->
+
+
+
+        <!-- </div> -->
+      <hr>
+      <!--submit button  -->
+        <input type="submit" name="submit" class="btn btn-primary mb-l" value="Submit">
+  </div>
+
+  <!-- test scores  -->
+  <div class="col-sm-4">
+  <div class=" card score_card">
+    <div class="card-header blue text-center font-weight-bold">Test Scores</div>
+    <ul class="list-group list-group-flush">
+      <?php
+            $q="select * from scores where usn='".$candidateArray["usn"]."'";
+            $select_row=mysqli_query($connection,$q);
+            $row=mysqli_fetch_assoc($select_row);
+            echo "<li class='list-group-item'><h5 class='pull-left'>Aptitude</h5><p class='pull-right'>".$row["score1"]."</p></li>";
+            echo "<li class='list-group-item'><h5 class='pull-left'>Coding</h5><p class='pull-right'>".$row["score2"]."</p></li>";
+      ?>
+    </ul>
+  </div>
+  <br>
+  <div class="card border-light mb-3 score_card" >
+    <div class="card-header text-center blue font-weight-bold">Previous Remark</div>
+    <div class="card-body">
+        <?php $query="select * from feedback wher usn='".$candidateArray["usn"]."'";
+              $s=mysqli_query($connection,$query);
+              $row=mysqli_fetch_assoc($s);
+              echo "<p class='card-text'>".$row[5]."</p>";
+        ?>
+    </div>
+ </div>
+  <!-- test scores  -->
+
+  <!-- previous comments -->
+  <!-- previous comments -->
+
+
+
+
+  </div>
+
 
 </form>
 </section>
@@ -161,9 +214,18 @@ if(isset($_GET["submit"])){
 
 
 
+<script>
+$(function(){
+
+   $(".dropdown-menu1 a").click(function(){
+
+     $(".btn1:first-child").text($(this).text());
+     $(".btn1:first-child").val($(this).text());
+
+  });
+
+});
+</script>
 
 <!-- jquery scripts  -->
-
-
-
 <?php require_once './local_resources/components/footer.php';?>

@@ -4,7 +4,7 @@
   // database connection
   include './local_resources/connections/database.php';
   // including the head
-  require_once './local_resources/components/head.php';
+  require_once './local_resources/components/header.php';
 
   // database connection
   $connection=databaseConnection();

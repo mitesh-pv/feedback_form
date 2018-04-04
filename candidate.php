@@ -29,7 +29,6 @@ if($_SESSION["username"]==true){
 }
 
 
-
 // submit details
 if(isset($_GET["submit"])){
 
@@ -37,16 +36,21 @@ if(isset($_GET["submit"])){
   $comment=$_GET['comment'];
   $sec_reviewer=$_GET['sec_reviewer'];
 
+  $recommend_to=null;
+  if($action==="recommend"){
+    $recommend_to;
+  }
+
 
   // putFeedback($action,$comment,$sec_reviewer,$_SESSION['username'],$canName);
   // header("Location: member.php");
-  $query="insert into feedback values(null,'$canName','$user','$sec_reviewer','$action','$comment')";
+  $query="insert into feedback values(null,'$canName','$user','$sec_reviewer','$action','$comment','mitesh')";
   $result=mysqli_query($connection,$query);
 
   if(!$result){
     die('submission failed');
   }else{
-    header("Location: https://www.google.com");
+
   }
 }
 
@@ -54,6 +58,8 @@ if(isset($_GET["submit"])){
 
 <!-- print the candidate details -->
 <section class="profile container">
+  <div class="row"><a type="button" href="member.php"class="btn btn-primary"><i class="fa fa-chevron-left ml-1 pull-left"></i> </a></div>
+  <br>
 <form  action="candidate.php" method="get">
 
         <div class="row">
@@ -120,10 +126,10 @@ if(isset($_GET["submit"])){
 
           <label class="card-title text-muted" >Review: </label>
            <div class="selector" id="selector">
-            <select class="mdb-select select-picker" id="s"name="action" required>
+            <select class="mdb-select select-picker" id="s" name="action" required>
                 <option value="" disabled selected>Action</option>
                 <option value="select">Select</option>
-                <option value="recommend" id="recommend">Recomend</option>
+                <option value="recommend" id="recommend">Recommend</option>
                 <option value="reject">Reject</option>
             </select>
           </div>
@@ -142,7 +148,7 @@ if(isset($_GET["submit"])){
 
                 <div class="form-group">
                   <label for="comments">Remarks</label>
-                  <textarea class="form-control" id="comment" rows="3" placeholder="   Write something here..." name="comment" style="padding-Left:2px;    height: 100%; width:;" aria-expanded=false></textarea>
+                  <textarea class="form-control" id="comment" rows="3" placeholder="   Write something here..." name="comment" style="padding-Left:2px; height: 100%; width:;" aria-expanded=false></textarea>
                 </div>
 
 
@@ -188,30 +194,67 @@ if(isset($_GET["submit"])){
     </ul>
   </div>
   <br>
-  <div class="card border-light mb-3 score_card" >
+  <div class="card border-light mb-3 score_card comment_card">
     <div class="card-header text-center blue font-weight-bold">Previous Remark</div>
     <div class="card-body">
-        <?php $query="select * from feedback wher usn='".$candidateArray["usn"]."'";
+        <?php $query="select * from feedback where candidate_name='$canName'";
               $s=mysqli_query($connection,$query);
               $row=mysqli_fetch_assoc($s);
-              echo "<p class='card-text'>".$row[5]."</p>";
+              echo "<p class='card-text '>".$row["comments"]."</p>";
+              echo " <p class='card-text '><small class='text-muted pull-right'>".$row["reviewer1"]."</small></p>"
         ?>
     </div>
  </div>
   <!-- test scores  -->
-
-  <!-- previous comments -->
-  <!-- previous comments -->
-
-
-
-
-  </div>
-
-
+</div>
 </form>
 </section>
 
+
+
+
+<!-- Central Modal Medium Success -->
+<div class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-notify modal-success" role="document">
+    <!--Content-->
+    <div class="modal-content">
+        <!--Header-->
+        <div class="modal-header">
+            <p class="heading lead">whome do you want to recommend</p>
+
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true" class="white-text">&times;</span>
+            </button>
+        </div>
+
+        <!--Body-->
+        <div class="modal-body">
+            <div class="text-center">
+              <select class="mdb-select select-picker" name="recommend_to">
+            <?php  $query="select * from users where username !='$user'";
+              $select_rows=mysqli_query($connection,$query);
+              while($row=mysqli_fetch_assoc($select_rows)){
+                echo "<option value=".$row['username'].">".$row['username']."</option>";
+              }
+              ?>
+            </select>
+            </div>
+        </div>
+
+        <!--Footer-->
+        <div class="modal-footer justify-content-center">
+            <a type="button" class="btn btn-success waves-effect" data-dismiss="modal">Forward</a>
+        </div>
+    </div>
+    <!--/.Content-->
+</div>
+</div>
+<!-- Central Modal Medium Success-->
+
+<!-- Button trigger modal -->
+<div class="text-center">
+<a href="" class="btn btn-default btn-rounded" data-toggle="modal" data-target="#centralModalSuccess">Launch Modal Success <i class="fa fa-eye ml-1"></i></a>
+</div>
 
 
 
@@ -226,6 +269,7 @@ $(function(){
   });
 
 });
+
 </script>
 
 <!-- jquery scripts  -->

@@ -78,6 +78,7 @@ td{
 .shadow-textarea textarea.form-control::placeholder {
   font-weight: 300;
 }
+/* text area */
 .shadow-textarea textarea.form-control {
   padding-left: 0.8rem;
 }
@@ -91,17 +92,21 @@ td{
     text-transform: uppercase;
 }
 
+
+/* dropdown menu */
 .dropdown-menu:hover{
   display: block;
     cursor :pointer;
 }
 
+/* for the dropdown  */
 .select-picker{
   border-radius: 5px;
   height: 40px;
   width: 200px;
 
 }
+
 
 .recommend:hover{
   -webkit-transition: all 0.5s ease-in-out;
@@ -111,12 +116,14 @@ td{
 
 }
 
-/* styling for score card */
+/*  score card */
 .score_card{
   margin-left: 5%;
 }
 
+/* comment card */
 .comment_card{
-  margin-left: 12%;
-  width: 20rem;
+  margin-top: 20%;
+  /* margin-left: 12%; */
+  /* width: 20rem; */
 }

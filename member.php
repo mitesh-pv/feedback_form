@@ -129,7 +129,7 @@
           $select_rows=mysqli_query($connection,$query);
 
           while($row=mysqli_fetch_assoc($select_rows)){
-  echo "<li class='list-group-item pull-left'><a href='candidate.php?candidateName=".ucfirst($row["candidate_name"])."'>".$row['candidate_name']."</a><small class='pull-right'>from&nbsp&nbsp".$row['reviewer1']."</li>";
+  echo "<li class='list-group-item pull-left'><a href='candidate.php?candidateName=".ucfirst($row["candidate_name"])."'>".$row['candidate_name']."</a><small class='pull-right'>from&nbsp&nbsp".$row['reviewer1']."</small></li>";
           }
     ?>
   </ul>

@@ -16,27 +16,29 @@
     <link href="./local_resources/components/css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
     <link href="./local_resources/components/css/style.css" rel="stylesheet">
+
+    <style media="screen">
+
+    </style>
 </head>
 <body>
 
 
-<div class="container">
+      <div class="box">
+        <select>
+          <option value="1">Some option</option>
+          <option value="2">Another option</option>
+          <option value="3" disabled>A disabled option</option>
+          <option value="4">Potato</option>
+        </select>
+      </div>
+
+
+<script type="text/javascript">
 
 
 
-<label for="username">username</label>
-<div class=" md-form form-sm form-3 form-5">
-  input-group
-  <input type="text" class="form-control mt-0 blue-border" id="username" aria-describedby="basic-addon33">
-</div>
-
-
-</div>
-
-
-
-</div>
-
+</script>
 
   </body>
 </html>

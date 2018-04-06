@@ -99,5 +99,11 @@ $("#alert-target").click(function () {
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="./local_resources/components/js/mdb.min.js"></script>
 <!-- scripts -->
+
+
+
+
+
+
 </body>
 </html>

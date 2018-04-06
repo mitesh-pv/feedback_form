@@ -14,4 +14,7 @@
     <link href="./local_resources/components/css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
     <link href="./local_resources/components/css/style.css" rel="stylesheet">
+
+    <!-- dropdown_select -->
+    <!-- <link rel="stylesheet" href="./local_resources/components/dropdown_select/css/style.css"> -->
 </head>

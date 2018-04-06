@@ -14,10 +14,6 @@
     header('location: index.php');
   }
 
-
-
-
-
 ?>
 <body>
 <?php require_once './local_resources/components/navbar.php'; ?>

@@ -11,6 +11,13 @@ require_once './local_resources/components/header.php';
 // include navbar
 require_once './local_resources/components/navbar.php';
 
+// maintain the session
+if($_SESSION["username"]==true){
+  $user=$_SESSION["username"];
+}else{
+  header('location: index.php');
+}
+
 // get the candidate name
 $canName=$_GET["candidateName"];
 $_SESSION['candidate']=$canName;
@@ -21,37 +28,29 @@ $connection=databaseConnection();
 // get the selected candidate details
 $candidateArray=candidateConnection($canName);
 
-// maintain the session
-if($_SESSION["username"]==true){
-  $user=$_SESSION["username"];
-}else{
-  header('location: index.php');
-}
+
+$recomm=null;
+$action=null;
 
 
 // submit details
 if(isset($_GET["submit"])){
 
-  $action=$_GET['action'];
-  $comment=$_GET['comment'];
-  $sec_reviewer=$_GET['sec_reviewer'];
+  $action=$_GET["action"];
+  $comment=$_GET["comment"];
+  $sec_reviewer=$_GET["sec_reviewer"];
 
-  $recommend_to=null;
   if($action==="recommend"){
-    $recommend_to;
+    $recomm=$_GET["recommending"];
+  }else{
+    $recomm=null;
   }
 
-
-  // putFeedback($action,$comment,$sec_reviewer,$_SESSION['username'],$canName);
-  // header("Location: member.php");
-  $query="insert into feedback values(null,'$canName','$user','$sec_reviewer','$action','$comment','mitesh')";
+  $query="insert into feedback values(null,'$canName','$user','$sec_reviewer','$action','$comment','$recomm')";
   $result=mysqli_query($connection,$query);
 
-  if(!$result){
-    die('submission failed');
-  }else{
 
-  }
+
 }
 
 ?>
@@ -60,7 +59,7 @@ if(isset($_GET["submit"])){
 <section class="profile container">
   <div class="row"><a type="button" href="member.php"class="btn btn-primary"><i class="fa fa-chevron-left ml-1 pull-left"></i> </a></div>
   <br>
-<form  action="candidate.php" method="get">
+<form action="candidate.php" method="get">
 
         <div class="row">
         <div class="jumbotron jumbotron1 col-sm-8 ">
@@ -122,40 +121,52 @@ if(isset($_GET["submit"])){
       <div class="row">
     <div class="col-sm-8 jumbotron">
 
+      <div class="row">
           <!--Blue select-->
-
-          <label class="card-title text-muted" >Review: </label>
+        <div class="col-sm-4">
+          <!-- <label class="card-title text-muted" >Review: </label> -->
            <div class="selector" id="selector">
-            <select class="mdb-select select-picker" id="s" name="action" required>
+            <select class="mdb-select select-picker" id="action" name="action" >
                 <option value="" disabled selected>Action</option>
-                <option value="select">Select</option>
-                <option value="recommend" id="recommend">Recommend</option>
-                <option value="reject">Reject</option>
+                <option value="select" onclick="myFunction2()">Select</option>
+                <option value="recommend" onclick="myFunction1()">Recommend</option>
+                <option value="reject" onclick="myFunction2()">Reject</option>
+                <option value="decide later" onclick="myFunction2()">Decide Later </option>
+
             </select>
           </div>
+        </div>
+        <!-- <div class="col-sm-2"><button class="btn-success" onclick="myFunction()">go</button></div> -->
+        <div class="col-sm-4" id="myDIV" style="visibility:hidden;">
+          <!-- <label class="card-title text-muted" >Recommend To: </label> -->
+          <div class="selector" id="selector">
+            <select class="mdb-select select-picker" name="recommending">
+              <option disabled selected>forward to</option>
+              <?php  $query="select * from users where username !='$user'";
+              $select_rows=mysqli_query($connection,$query);
+              while($row=mysqli_fetch_assoc($select_rows)){
+                echo "<option value=".$row['username'].">".$row['username']."</option>";
+              }
+              ?>
+            </select>
+          </div>
+        </div>
+    </div>
+    <br><br>
 
-          <br><br>
 
-        <!-- </div> -->
 
-        <!-- next to delete  -->
-      <!-- <hr class="row"> -->
       <!--/Blue select-->
       <input type="hidden" name="candidateName" value="<?php echo $canName;?>">
-
         <!-- <div class="col-sm-8"> -->
                 <!-- text area for comments -->
-
                 <div class="form-group">
                   <label for="comments">Remarks</label>
                   <textarea class="form-control" id="comment" rows="3" placeholder="   Write something here..." name="comment" style="padding-Left:2px; height: 100%; width:;" aria-expanded=false></textarea>
                 </div>
-
-
                 <!-- text area for comments -->
                 <br><br>
                 <!-- <hr class="row"> -->
-
                 <!-- option for second interviewer -->
                 <select class="mdb-select select-picker" name="sec_reviewer" required>
                     <option value="" disabled selected>second reviewer</option>
@@ -170,12 +181,15 @@ if(isset($_GET["submit"])){
                 <br><br>
                 <!-- <hr class="row"> -->
 
-
+                <hr>
+                <div class="d-flex justify-content-center">
+                  <!-- <input type="submit"  name="submit" class="btn btn-primary mb-lg-auto" value="Submit"> -->
+                  <input type="submit" id="submit" name="submit" class="btn btn-primary mb-lg-auto" value="submit">
+                </div>
+  </form>
 
         <!-- </div> -->
-      <hr>
       <!--submit button  -->
-        <div class="d-flex justify-content-center"><input type="submit" name="submit" class="btn  btn-primary mb-lg-auto" value="Submit"></div>
 
   </div>
 
@@ -207,70 +221,74 @@ if(isset($_GET["submit"])){
  </div>
   <!-- test scores  -->
 </div>
-</form>
 </section>
 
 
 
+<!-- Central Modal Warning Demo-->
+<div class="modal fade left" id="ModalWarning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-warning modal-side modal-bottom-left" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <p class="heading">Modal Warning</p>
 
-<!-- Central Modal Medium Success -->
-<div class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-<div class="modal-dialog modal-notify modal-success" role="document">
-    <!--Content-->
-    <div class="modal-content">
-        <!--Header-->
-        <div class="modal-header">
-            <p class="heading lead">whome do you want to recommend</p>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
 
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true" class="white-text">&times;</span>
-            </button>
-        </div>
+            <!--Body-->
+            <div class="modal-body">
 
-        <!--Body-->
-        <div class="modal-body">
-            <div class="text-center">
-              <select class="mdb-select select-picker" name="recommend_to">
-            <?php  $query="select * from users where username !='$user'";
-              $select_rows=mysqli_query($connection,$query);
-              while($row=mysqli_fetch_assoc($select_rows)){
-                echo "<option value=".$row['username'].">".$row['username']."</option>";
-              }
-              ?>
-            </select>
+                <div class="row">
+                    <div class="col-3 text-center">
+                        <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(1).jpg" alt="Michal Szymanski - founder of Material Design for Bootstrap"
+                            class="img-fluid z-depth-1-half rounded-circle">
+                        <div style="height: 10px"></div>
+                        <p class="title mb-0">Jane</p>
+                        <p class="text-muted " style="font-size: 13px">Consultant</p>
+                    </div>
+
+                    <div class="col-9">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, molestiae provident temporibus
+                            sunt earum.</p>
+                        <p class="card-text"><strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</strong></p>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer justify-content-center">
+                <a type="button" class="btn btn-primary">Get it now <i class="fa fa-diamond ml-1"></i></a>
+                <a type="button" class="btn btn-outline-primary waves-effect" data-dismiss="modal">No, thanks</a>
             </div>
         </div>
-
-        <!--Footer-->
-        <div class="modal-footer justify-content-center">
-            <a type="button" class="btn btn-success waves-effect" data-dismiss="modal">Forward</a>
-        </div>
+        <!--/.Content-->
     </div>
-    <!--/.Content-->
 </div>
-</div>
-<!-- Central Modal Medium Success-->
+<!-- Central Modal Warning Demo-->
 
-<!-- Button trigger modal -->
 <div class="text-center">
-<a href="" class="btn btn-default btn-rounded" data-toggle="modal" data-target="#centralModalSuccess">Launch Modal Success <i class="fa fa-eye ml-1"></i></a>
+    <a href="" class="btn btn-default btn-rounded" data-toggle="modal" data-target="#ModalWarning">Launch Modal Warning <i class="fa fa-eye ml-1"></i></a>
 </div>
-
 
 
 <script>
-$(function(){
 
-   $(".dropdown-menu1 a").click(function(){
 
-     $(".btn1:first-child").text($(this).text());
-     $(".btn1:first-child").val($(this).text());
 
-  });
-
-});
-
+function myFunction1(){
+  var x = document.getElementById('myDIV');
+  x.style.visibility="visible";
+}
+function myFunction2(){
+  var x = document.getElementById('myDIV');
+  x.style.visibility="hidden";
+}
 </script>
-
 <!-- jquery scripts  -->
 <?php require_once './local_resources/components/footer.php';?>

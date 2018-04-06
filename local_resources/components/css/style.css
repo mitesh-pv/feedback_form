@@ -127,3 +127,8 @@ td{
   /* margin-left: 12%; */
   /* width: 20rem; */
 }
+
+/*for the hidden object   */
+#myDIV{
+  padding-left: 20%;
+}

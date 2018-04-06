@@ -32,7 +32,7 @@
 
             if($connection=mysqli_connect('localhost','root','','decoders')){
 
-                    $query="select * from candidate where year='1st Year'";
+                    $query="select * from candidate where year='1'";
                     $result=mysqli_query($connection,$query);
                     $rowcount=mysqli_num_rows($result);
 
@@ -74,7 +74,7 @@
 
             if($connection=mysqli_connect('localhost','root','','decoders')){
 
-                    $query="select * from candidate where year='2nd Year'";
+                    $query="select * from candidate where year='2'";
                     $result=mysqli_query($connection,$query);
                     $rowcount=mysqli_num_rows($result);
 

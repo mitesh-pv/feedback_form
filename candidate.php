@@ -8,7 +8,7 @@ require_once './local_resources/components/header.php';
 // include navbar
 require_once './local_resources/components/navbar.php';
 // maintain the session
-if($_SESSION["username"]==true){
+if($_SESSION["username"]==true && ($_GET["candidateName"]!=null)){
   $user=$_SESSION["username"];
 }else{
   header('location: index.php');
@@ -24,6 +24,7 @@ $recomm=null;
 $action=null;
 // submit details
 if(isset($_GET["submit"])){
+
   $action=$_GET["action"];
   $comment=$_GET["comment"];
   $sec_reviewer=$_GET["sec_reviewer"];
@@ -34,6 +35,8 @@ if(isset($_GET["submit"])){
   }
   $query="insert into feedback values(null,'$canName','$user','$sec_reviewer','$action','$comment','$recomm')";
   $result=mysqli_query($connection,$query);
+
+  header("Location: member.php");
 }
 ?>
 
@@ -156,7 +159,7 @@ if(isset($_GET["submit"])){
         <!-- <div class="col-sm-8"> -->
                 <!-- text area for comments -->
                 <div class="form-group">
-                  <label for="comments">Remarks</label>
+                  <label for="comment">Remarks</label>
                   <textarea class="form-control" id="comment" rows="3" placeholder="   Write something here..." name="comment" style="padding-Left:2px; height: 100%; width:;" aria-expanded=false></textarea>
                 </div>
                 <!-- text area for comments -->
@@ -198,9 +201,10 @@ if(isset($_GET["submit"])){
      <?php
            $q="select * from feedback where candidate_name='$canName'";
            $s=mysqli_query($connection,$q);
-           $row=mysqli_fetch_assoc($s);
+
            while($row=mysqli_fetch_assoc($s)){
              echo "<li class='list-group-item'><p class='pull-left'>".$row["comments"]."</p><small class='text-muted pull-right'>".$row["reviewer1"]."</small></li>";
+
            }
      ?>
    </ul>
@@ -238,8 +242,8 @@ if(isset($_GET["submit"])){
 
             <!--Footer-->
             <div class="modal-footer justify-content-center">
-                <a type="button" class="btn btn-primary">Get it now <i class="fa fa-diamond ml-1"></i></a>
-                <a type="button" class="btn btn-outline-primary waves-effect" data-dismiss="modal">No, thanks</a>
+                <a type="button" class="btn btn-primary" name="submit1">Submit</a>
+
             </div>
         </div>
         <!--/.Content-->

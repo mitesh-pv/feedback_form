@@ -96,28 +96,11 @@ function putUser($username,$password){
 
   if($result){
     $_SESSION["username"]=$username;
-    header('refresh: 1.5; url=member.php');
+    header('Refresh: 1.5;url= loading.php');
   }else{
     die('authentication failed');
   }
 }
 
-// function to fetch user who are the second reviewer
-
-// function putFeedback($action,$comment,$sec_reviewer,$username,$canName){
-//     global $c;
-//
-//     $query="insert into frrdback values(null, '$canName','$username','$sec_reviewer','$action','$comment')";
-//     $result=mysqli_query($c,$query);
-//
-//     if(!$result){
-//       die('submission failed');
-//     }else{
-//       header('member.php');
-//     }
-//
-//
-//
-// }
 
 ?>

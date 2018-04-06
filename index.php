@@ -1,4 +1,5 @@
 <?php
+  // start the session
   session_start();
 
   // database connection
@@ -17,11 +18,11 @@
     $username=$_POST['username'];
     $password=$_POST['password'];
 
-
     if($username && $password)
-      userConnection($username,$password);
-    else
-      echo 'enter username and password';
+        userConnection($username,$password);
+    else{
+        echo 'enter username and password';
+    }
 
   }elseif (isset($_POST['signup'])) {
 
@@ -29,16 +30,14 @@
     $password=$_POST['password'];
     $authKey=$_POST['authkey'];
 
-    if($authKey=='getKey'){
-      // insert the new user into the users table
-      if($username && $password)
-        putUser($username,$password);
-      else
-        echo 'enter username and password';
+    // insert the new user into the users table
+    if($username && $password)
+      putUser($username,$password);
+    else
+      echo 'enter username and password';
     }else{
         //  toastr.success('Hi! I am success message.');
     }
-  }
 ?>
 <body class="body1">
 
@@ -65,7 +64,7 @@
                   <div class="text-center py-4 mt-3">
                       <button class="btn btn-primary  btn-block" type="submit" name="submit">Login</button>
                   </div>
-            </form>
+              </form>
 
                   <!-- registration -->
                   <a href="" class="badge badge-primary mb-4" data-toggle="modal" data-target="#signupform" class="badge badge-primary">admin</a>
@@ -80,15 +79,6 @@
     <!-- Card -->
     <!-- /Start your project here-->
 
-<!-- scripts -->
-<script>
-
-$("#alert-target").click(function () {
-    toastr["info"]("I was launched via jQuery!")
-});
-
-</script>
-
 
 <!-- JQuery -->
 <script type="text/javascript" src="./local_resources/components/js/jquery-3.2.1.min.js"></script>
@@ -99,11 +89,5 @@ $("#alert-target").click(function () {
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="./local_resources/components/js/mdb.min.js"></script>
 <!-- scripts -->
-
-
-
-
-
-
 </body>
 </html>

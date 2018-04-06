@@ -225,40 +225,29 @@ if(isset($_GET["submit"])){
 
 
 
-<!-- Central Modal Warning Demo-->
-<div class="modal fade left" id="ModalWarning" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-notify modal-warning modal-side modal-bottom-left" role="document">
+
+<!-- Central Modal Medium Success -->
+<div class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-success" role="document">
         <!--Content-->
         <div class="modal-content">
             <!--Header-->
             <div class="modal-header">
-                <p class="heading">Modal Warning</p>
+                <p class="heading lead">Modal Success</p>
 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true" class="white-text">&times;</span>
-                </button>
+                                            <span aria-hidden="true" class="white-text">&times;</span>
+                                        </button>
             </div>
 
             <!--Body-->
             <div class="modal-body">
-
-                <div class="row">
-                    <div class="col-3 text-center">
-                        <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20(1).jpg" alt="Michal Szymanski - founder of Material Design for Bootstrap"
-                            class="img-fluid z-depth-1-half rounded-circle">
-                        <div style="height: 10px"></div>
-                        <p class="title mb-0">Jane</p>
-                        <p class="text-muted " style="font-size: 13px">Consultant</p>
-                    </div>
-
-                    <div class="col-9">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, molestiae provident temporibus
-                            sunt earum.</p>
-                        <p class="card-text"><strong>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</strong></p>
-                    </div>
+                <div class="text-center">
+                    <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit iusto nulla aperiam
+                        blanditiis ad consequatur in dolores culpa, dignissimos, eius non possimus fugiat.
+                        Esse ratione fuga, enim, ab officiis totam.</p>
                 </div>
-
-
             </div>
 
             <!--Footer-->
@@ -270,12 +259,12 @@ if(isset($_GET["submit"])){
         <!--/.Content-->
     </div>
 </div>
-<!-- Central Modal Warning Demo-->
+<!-- Central Modal Medium Success-->
 
+<!-- Button trigger modal -->
 <div class="text-center">
-    <a href="" class="btn btn-default btn-rounded" data-toggle="modal" data-target="#ModalWarning">Launch Modal Warning <i class="fa fa-eye ml-1"></i></a>
+    <a href="" class="btn btn-default btn-rounded" data-toggle="modal" data-target="#centralModalSuccess">Launch Modal Success <i class="fa fa-eye ml-1"></i></a>
 </div>
-
 
 <script>
 

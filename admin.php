@@ -26,11 +26,6 @@
                     <label data-error="wrong" data-success="right" for="password">Enter Password</label>
                 </div>
                 <br>
-                <div class="md-form mb-5">
-                   <i class="fa fa-tag prefix grey-text"></i>
-                   <input type="text" name="authkey" id="auth_key" class="form-control validate">
-                   <label data-error="wrong" data-success="right" for="form32">Enter Key</label>
-               </div>
             </div>
             <div class="modal-footer d-flex justify-content-center">
                 <button class="btn btn-primary" name="signup">Sign up</button>

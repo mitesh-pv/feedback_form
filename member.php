@@ -13,8 +13,8 @@
   }else{
     header('location: index.php');
   }
-
 ?>
+
 <body>
 <?php require_once './local_resources/components/navbar.php'; ?>
 
@@ -114,7 +114,7 @@
   <div class="col-1">
   </div>
   <div class="col-3">
-  <div class="card" style="width: 30rem;">
+  <div class="card" style="width: 20rem;">
   <div class="card-header">
    <h5 class="text-center">Recomendations</h5>
   </div>

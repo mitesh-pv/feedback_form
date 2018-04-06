@@ -43,7 +43,7 @@ html{
 /* jumbotron */
 .jumbotron1{
   background-color: rgb(244, 243, 243);
-  margin-right: ;
+  height: 75%;
   /* height: 100%; */
 }
 
@@ -118,12 +118,12 @@ td{
 
 /*  score card */
 .score_card{
-  margin-left: 5%;
+  position: relative;
 }
 
 /* comment card */
 .comment_card{
-  margin-top: 20%;
+  margin-left: 8%;
   /* margin-left: 12%; */
   /* width: 20rem; */
 }

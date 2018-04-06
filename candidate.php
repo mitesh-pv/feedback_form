@@ -1,58 +1,40 @@
 <?php
 // starting session
 session_start();
-
 // database connection
 include './local_resources/connections/database.php';
-
 // including the header
 require_once './local_resources/components/header.php';
-
 // include navbar
 require_once './local_resources/components/navbar.php';
-
 // maintain the session
 if($_SESSION["username"]==true){
   $user=$_SESSION["username"];
 }else{
   header('location: index.php');
 }
-
 // get the candidate name
 $canName=$_GET["candidateName"];
 $_SESSION['candidate']=$canName;
-
 // connect database
 $connection=databaseConnection();
-
 // get the selected candidate details
 $candidateArray=candidateConnection($canName);
-
-
 $recomm=null;
 $action=null;
-
-
 // submit details
 if(isset($_GET["submit"])){
-
   $action=$_GET["action"];
   $comment=$_GET["comment"];
   $sec_reviewer=$_GET["sec_reviewer"];
-
   if($action==="recommend"){
     $recomm=$_GET["recommending"];
   }else{
     $recomm=null;
   }
-
   $query="insert into feedback values(null,'$canName','$user','$sec_reviewer','$action','$comment','$recomm')";
   $result=mysqli_query($connection,$query);
-
-
-
 }
-
 ?>
 
 <!-- print the candidate details -->
@@ -115,6 +97,20 @@ if(isset($_GET["submit"])){
                 <!--/.Card content-->
             </div>
             <!-- Card -->
+            <div class=" card score_card">
+              <div class="card-header blue text-center font-weight-bold">Test Scores</div>
+              <ul class="list-group list-group-flush">
+                <?php
+                      $q="select * from scores where usn='".$candidateArray["usn"]."'";
+                      $select_row=mysqli_query($connection,$q);
+                      $row=mysqli_fetch_assoc($select_row);
+                      echo "<li class='list-group-item'><h5 class='pull-left'>Aptitude</h5><p class='pull-right'>".$row["score1"]."</p></li>";
+                      echo "<li class='list-group-item'><h5 class='pull-left'>Coding</h5><p class='pull-right'>".$row["score2"]."</p></li>";
+                ?>
+              </ul>
+            </div>
+
+
         </div>
       </div>
 
@@ -153,7 +149,6 @@ if(isset($_GET["submit"])){
         </div>
     </div>
     <br><br>
-
 
 
       <!--/Blue select-->
@@ -195,29 +190,20 @@ if(isset($_GET["submit"])){
 
   <!-- test scores  -->
   <div class="col-sm-4">
-  <div class=" card score_card">
-    <div class="card-header blue text-center font-weight-bold">Test Scores</div>
-    <ul class="list-group list-group-flush">
-      <?php
-            $q="select * from scores where usn='".$candidateArray["usn"]."'";
-            $select_row=mysqli_query($connection,$q);
-            $row=mysqli_fetch_assoc($select_row);
-            echo "<li class='list-group-item'><h5 class='pull-left'>Aptitude</h5><p class='pull-right'>".$row["score1"]."</p></li>";
-            echo "<li class='list-group-item'><h5 class='pull-left'>Coding</h5><p class='pull-right'>".$row["score2"]."</p></li>";
-      ?>
-    </ul>
-  </div>
-  <br>
-  <div class="card border-light mb-3 score_card comment_card">
-    <div class="card-header text-center blue font-weight-bold">Previous Remark</div>
-    <div class="card-body">
-        <?php $query="select * from feedback where candidate_name='$canName'";
-              $s=mysqli_query($connection,$query);
-              $row=mysqli_fetch_assoc($s);
-              echo "<p class='card-text '>".$row["comments"]."</p>";
-              echo " <p class='card-text '><small class='text-muted pull-right'>".$row["reviewer1"]."</small></p>"
-        ?>
-    </div>
+
+
+ <div class=" card score_card score_card comment_card">
+   <div class="card-header blue text-center font-weight-bold">Previous Remark</div>
+   <ul class="list-group list-group-flush">
+     <?php
+           $q="select * from feedback where candidate_name='$canName'";
+           $s=mysqli_query($connection,$q);
+           $row=mysqli_fetch_assoc($s);
+           while($row=mysqli_fetch_assoc($s)){
+             echo "<li class='list-group-item'><p class='pull-left'>".$row["comments"]."</p><small class='text-muted pull-right'>".$row["reviewer1"]."</small></li>";
+           }
+     ?>
+   </ul>
  </div>
   <!-- test scores  -->
 </div>
@@ -267,9 +253,6 @@ if(isset($_GET["submit"])){
 </div>
 
 <script>
-
-
-
 function myFunction1(){
   var x = document.getElementById('myDIV');
   x.style.visibility="visible";
